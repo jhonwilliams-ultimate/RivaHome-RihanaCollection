@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Riva Home — Rihana Collection | Meta Ads Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --violet:#7C3AED; --violet-light:#EDE9FE;
+    --teal:#0D9488; --teal-light:#CCFBF1;
+    --amber:#F59E0B; --amber-light:#FEF3C7;
+    --rose:#EC4899; --rose-light:#FCE7F3;
+    --sky:#0EA5E9; --sky-light:#E0F2FE;
+    --emerald:#10B981; --emerald-light:#D1FAE5;
+    --orange:#F97316; --orange-light:#FFEDD5;
+    --page-bg:#FAFAF8; --white:#FFFFFF;
+    --text-dark:#1C1917; --text-mid:#44403C; --text-muted:#78716C;
+  }
+  body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--page-bg); color:var(--text-dark); min-height:100vh; }
+
+  /* HERO */
+  .hero { background:linear-gradient(135deg,#7C3AED 0%,#EC4899 50%,#F97316 100%); padding:56px 48px 48px; position:relative; overflow:hidden; }
+  .hero-circles { position:absolute; top:-80px; right:-80px; width:400px; height:400px; border-radius:50%; border:60px solid rgba(255,255,255,0.08); }
+  .hero-circles2 { position:absolute; bottom:-60px; left:30%; width:220px; height:220px; border-radius:50%; border:40px solid rgba(255,255,255,0.06); }
+  .hero-eyebrow { font-size:11px; letter-spacing:5px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:10px; font-weight:500; }
+  .hero-brand { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; color:#fff; line-height:1.05; margin-bottom:8px; }
+  .hero-tagline { font-size:15px; color:rgba(255,255,255,0.75); margin-bottom:16px; }
+  .hero-markets { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+  .hero-market-pill { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.35); border-radius:20px; padding:5px 14px; font-size:12px; color:#fff; font-weight:500; }
+  .hero-period { display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); border-radius:30px; padding:6px 18px; font-size:12px; color:#fff; font-weight:500; letter-spacing:1px; }
+  .hero-period svg { width:14px; height:14px; opacity:0.8; }
+
+  /* BRAG */
+  .brag { background:linear-gradient(90deg,#7C3AED 0%,#EC4899 100%); padding:28px 48px; }
+  .brag p { font-size:16px; color:rgba(255,255,255,0.92); line-height:1.75; }
+  .brag strong { color:#fff; font-weight:700; }
+
+  /* TABS */
+  .tab-nav-wrap { background:var(--white); border-bottom:1.5px solid #E7E5E4; padding:0 48px; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
+  .tab-nav { display:flex; gap:4px; padding:10px 0; }
+  .tab-btn { padding:9px 22px; border-radius:10px; border:1.5px solid transparent; background:transparent; font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; font-weight:600; color:var(--text-muted); cursor:pointer; transition:all 0.18s ease; white-space:nowrap; }
+  .tab-btn:hover { background:var(--violet-light); color:var(--violet); }
+  .tab-btn.active { background:linear-gradient(135deg,#7C3AED,#EC4899); color:#fff; }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+
+  /* BODY */
+  .body { padding:40px 48px; }
+  .section-label { font-size:15px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dark); font-weight:700; margin-bottom:20px; margin-top:44px; display:flex; align-items:center; gap:12px; }
+  .section-label::after { content:''; flex:1; height:2px; background:linear-gradient(90deg,#E7E5E4 0%,transparent 100%); }
+  .section-label.first { margin-top:0; }
+
+  /* STAT CARDS */
+  .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .stats-grid.cols4 { grid-template-columns:repeat(4,1fr); }
+  .stat-card { border-radius:16px; padding:22px 20px; position:relative; overflow:hidden; }
+  .stat-card-label { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:600; margin-bottom:8px; opacity:0.75; }
+  .stat-card-value { font-family:'Playfair Display',serif; font-size:34px; font-weight:700; line-height:1; }
+  .stat-card-sub { font-size:12px; margin-top:7px; opacity:0.7; line-height:1.5; }
+  .stat-card.span2 { grid-column:span 2; }
+  .stat-card.span2 .stat-card-value { font-size:44px; }
+  .stats-grid.cols4 .stat-card-value { font-size:30px; }
+  .stat-card::after { content:''; position:absolute; bottom:-20px; right:-20px; width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,0.35); }
+  .c-violet { background:var(--violet-light); color:#3B0D8A; } .c-violet .stat-card-value { color:var(--violet); }
+  .c-rose { background:var(--rose-light); color:#831843; } .c-rose .stat-card-value { color:var(--rose); }
+  .c-teal { background:var(--teal-light); color:#134E4A; } .c-teal .stat-card-value { color:var(--teal); }
+  .c-amber { background:var(--amber-light); color:#451A03; } .c-amber .stat-card-value { color:var(--amber); }
+  .c-sky { background:var(--sky-light); color:#0C4A6E; } .c-sky .stat-card-value { color:var(--sky); }
+  .c-emerald { background:var(--emerald-light); color:#064E3B; } .c-emerald .stat-card-value { color:var(--emerald); }
+  .c-orange { background:var(--orange-light); color:#431407; } .c-orange .stat-card-value { color:var(--orange); }
+
+  /* CALLOUT */
+  .eff-callout { border-radius:16px; padding:24px 28px; display:flex; align-items:center; gap:28px; margin-top:14px; }
+  .eff-callout.amber { background:linear-gradient(135deg,#F59E0B,#F97316); }
+  .eff-callout.teal { background:linear-gradient(135deg,#0D9488,#10B981); }
+  .eff-callout.violet { background:linear-gradient(135deg,#7C3AED,#EC4899); }
+  .eff-big { font-family:'Playfair Display',serif; font-size:52px; font-weight:700; color:#fff; white-space:nowrap; line-height:1; }
+  .eff-text { color:rgba(255,255,255,0.9); font-size:15px; line-height:1.7; }
+  .eff-text strong { color:#fff; font-weight:700; }
+
+  /* CAMPAIGN CARDS */
+  .markets-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .market-card { background:var(--white); border:1.5px solid #E7E5E4; border-radius:16px; overflow:hidden; transition:transform 0.18s ease,box-shadow 0.18s ease; }
+  .market-card:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.07); }
+  .market-card.awr { border-top:3px solid var(--violet); }
+  .market-card.sls { border-top:3px solid var(--rose); }
+  .market-card-header { padding:16px 20px 14px; display:flex; align-items:center; gap:10px; background:#FAFAF8; border-bottom:1.5px solid #E7E5E4; }
+  .market-flag { font-size:24px; }
+  .market-name { font-size:16px; font-weight:700; color:var(--text-dark); }
+  .market-spend { margin-left:auto; font-size:11px; font-weight:600; color:var(--text-muted); background:#EEEBE8; border-radius:20px; padding:3px 10px; white-space:nowrap; }
+  .market-campaign-block { padding:14px 20px 18px; }
+  .market-campaign-badge { font-size:9px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; border-radius:12px; padding:3px 10px; display:inline-block; margin-bottom:10px; }
+  .badge-s { background:#EDE9FE; color:#5B21B6; }
+  .badge-e { background:var(--rose-light); color:#831843; }
+  .market-metric { display:flex; justify-content:space-between; align-items:center; padding:6px 0; }
+  .market-metric:not(:last-child) { border-bottom:1px solid #F8F7F5; }
+  .market-ml { font-size:12px; color:var(--text-muted); }
+  .market-mv { font-size:13px; font-weight:700; color:var(--text-dark); }
+  .market-mv.hi-s { color:var(--violet); font-size:14px; }
+  .market-mv.hi-e { color:var(--rose); font-size:14px; }
+
+  /* HIGHLIGHTS */
+  .obs-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .obs-card { background:var(--white); border:1.5px solid #E7E5E4; border-radius:16px; padding:22px; }
+  .obs-icon { font-size:26px; margin-bottom:10px; }
+  .obs-title { font-size:13px; font-weight:700; color:var(--text-dark); margin-bottom:6px; }
+  .obs-text { font-size:12px; color:var(--text-muted); line-height:1.75; }
+  .obs-text strong { color:var(--text-mid); }
+
+  /* HEADER */
+  .country-header { background:var(--white); border:1.5px solid #E7E5E4; border-radius:16px; padding:22px 26px; display:flex; align-items:center; gap:18px; }
+  .country-flag-big { font-size:38px; }
+  .country-header-info { flex:1; }
+  .country-header-name { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; }
+  .country-header-sub { font-size:12px; color:var(--text-muted); margin-top:4px; }
+  .country-spend-block { text-align:right; }
+  .country-spend-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); font-weight:600; }
+  .country-spend-value { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:var(--violet); }
+
+  /* ALERT STRIP */
+  .alert-strip { display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+  .alert-pill { border-radius:12px; padding:9px 16px; font-size:12px; font-weight:600; display:flex; align-items:center; gap:7px; }
+  .alert-pill.good { background:var(--emerald-light); color:#064E3B; border:1.5px solid #A7F3D0; }
+  .alert-pill.info { background:var(--sky-light); color:#0C4A6E; border:1.5px solid #BAE6FD; }
+
+  /* FUNNEL */
+  .funnel { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  .funnel-step { background:var(--white); border:1.5px solid #E7E5E4; border-radius:16px; padding:22px 18px 18px; position:relative; }
+  .funnel-step:not(:last-child)::after { content:'→'; position:absolute; right:-17px; top:50%; transform:translateY(-50%); width:24px; height:24px; border-radius:50%; background:linear-gradient(135deg,#7C3AED,#EC4899); color:#fff; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; z-index:2; }
+  .funnel-step.f1 { border-top:3px solid var(--sky); }
+  .funnel-step.f2 { border-top:3px solid var(--violet); }
+  .funnel-step.f3 { border-top:3px solid var(--rose); }
+  .funnel-step.f4 { border-top:3px solid var(--emerald); background:#F0FDF9; border-color:#A7F3D0; }
+  .funnel-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--text-muted); margin-bottom:8px; }
+  .funnel-value { font-family:'Playfair Display',serif; font-size:36px; font-weight:700; line-height:1; }
+  .f1 .funnel-value { color:var(--sky); } .f2 .funnel-value { color:var(--violet); } .f3 .funnel-value { color:var(--rose); } .f4 .funnel-value { color:var(--emerald); }
+  .funnel-cost { font-size:12px; color:var(--text-muted); margin-top:8px; font-weight:500; }
+  .funnel-cost b { color:var(--text-dark); }
+  .funnel-rate { display:inline-block; margin-top:12px; font-size:10px; font-weight:700; border-radius:10px; padding:3px 10px; background:#D1FAE5; color:#065F46; }
+  .funnel-rate.neutral { background:#F3F4F6; color:#6B7280; }
+
+  /* DAILY CHARTS */
+  .chart-card { background:var(--white); border:1.5px solid #E7E5E4; border-radius:16px; padding:22px 24px 18px; margin-bottom:14px; }
+  .chart-title { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); font-weight:700; margin-bottom:4px; }
+  .chart-sub { font-size:12px; color:var(--text-muted); margin-bottom:6px; }
+  .chart { display:flex; align-items:flex-end; gap:6px; height:150px; padding-top:20px; }
+  .chart-col { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; }
+  .chart-val { font-size:10px; font-weight:700; color:var(--text-mid); margin-bottom:4px; white-space:nowrap; }
+  .chart-val.zero { color:#C9C5C1; font-weight:600; }
+  .chart-bar { width:100%; max-width:28px; border-radius:6px 6px 0 0; min-height:2px; }
+  .chart-axis { display:flex; gap:6px; margin-top:8px; border-top:1.5px solid #F0EEE9; padding-top:6px; }
+  .chart-axis span { flex:1; text-align:center; font-size:10px; color:var(--text-muted); font-weight:600; line-height:1.3; }
+  .chart-legend { display:flex; gap:18px; margin-top:12px; flex-wrap:wrap; }
+  .chart-legend-item { display:flex; align-items:center; gap:7px; font-size:11px; color:var(--text-mid); font-weight:500; }
+  .chart-legend-item i { width:10px; height:10px; border-radius:3px; display:inline-block; }
+
+  /* NOTES */
+  .method-card { background:var(--white); border:1.5px solid #E7E5E4; border-radius:16px; padding:22px 24px; }
+  .method-title { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); font-weight:700; margin-bottom:12px; }
+  .method-list { list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .method-list li { font-size:12px; color:var(--text-muted); line-height:1.7; padding-left:18px; position:relative; }
+  .method-list li::before { content:'•'; position:absolute; left:4px; color:var(--violet); font-weight:700; }
+  .method-list li strong { color:var(--text-mid); }
+
+  /* FOOTER */
+  .footer { background:#1C1917; color:rgba(255,255,255,0.4); text-align:center; padding:28px 48px; font-size:11px; letter-spacing:2px; text-transform:uppercase; }
+  .footer span { color:rgba(255,255,255,0.75); }
+
+  @media (max-width:900px) {
+    .funnel { grid-template-columns:1fr 1fr; }
+    .funnel-step::after { display:none; }
+  }
+  @media (max-width:768px) { .markets-grid { grid-template-columns:1fr; } }
+  @media (max-width:640px) {
+    .hero { padding:36px 24px 32px; } .hero-brand { font-size:36px; }
+    .body { padding:24px 20px; } .brag { padding:20px 24px; }
+    .tab-nav-wrap { padding:0 16px; } .tab-btn { padding:8px 12px; font-size:11px; }
+    .stats-grid, .stats-grid.cols4 { grid-template-columns:1fr 1fr; }
+    .stat-card.span2 { grid-column:span 2; }
+    .obs-grid { grid-template-columns:1fr; }
+    .eff-callout { flex-direction:column; gap:12px; text-align:center; }
+    .section-label { font-size:12px; } .footer { padding:20px 24px; }
+    .country-header { flex-wrap:wrap; }
+    .chart { gap:3px; } .chart-axis { gap:3px; } .chart-val { font-size:8px; } .chart-axis span { font-size:8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-circles"></div>
+  <div class="hero-circles2"></div>
+  <div class="hero-eyebrow">Armada Retail Group — Digital Marketing</div>
+  <div class="hero-brand">Riva Home</div>
+  <div class="hero-tagline">Rihana Collection — Meta Ads Performance Report</div>
+  <div class="hero-markets">
+    <div class="hero-market-pill">🇰🇼 Kuwait</div>
+    <div class="hero-market-pill">📣 Awareness</div>
+    <div class="hero-market-pill">🛍️ Sales</div>
+  </div>
+  <div class="hero-period">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    17 October – 1 November 2026
+  </div>
+</div>
+
+<!-- BRAG -->
+<div class="brag">
+  <p>
+    The Rihana Collection put Riva Home in front of <strong>403,580 people in Kuwait for only $500</strong>
+    and turned that attention into <strong>27 purchases worth $2,632.31</strong>
+    — a <strong>2.39x return</strong> on Sales ad spend, with an average purchase of <strong>$97.49</strong>.
+    Shoppers added to cart <strong>532 times</strong>, and
+    <strong>9 of the 27 purchases came in after the ads had already stopped.</strong>
+  </p>
+</div>
+
+<!-- TABS -->
+<div class="tab-nav-wrap">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(this,'overview')">📊&nbsp; All Campaigns</button>
+    <button class="tab-btn" onclick="switchTab(this,'awareness')">📣&nbsp; Awareness</button>
+    <button class="tab-btn" onclick="switchTab(this,'sales')">🛍️&nbsp; Sales</button>
+  </div>
+</div>
+
+
+<!-- ══════════ TAB: OVERVIEW ══════════ -->
+<div class="tab-content active" id="tab-overview">
+<div class="body">
+
+  <div class="section-label first">Rihana Collection at a Glance</div>
+  <div class="stats-grid">
+
+    <div class="stat-card c-violet span2">
+      <div class="stat-card-label">People Reached · Awareness</div>
+      <div class="stat-card-value">403,580</div>
+      <div class="stat-card-sub">Unique people in Kuwait reached for just $500</div>
+    </div>
+
+    <div class="stat-card c-orange">
+      <div class="stat-card-label">Total Ad Spend</div>
+      <div class="stat-card-value">$1,600</div>
+      <div class="stat-card-sub">$500 Awareness + $1,099.97 Sales</div>
+    </div>
+
+    <div class="stat-card c-sky">
+      <div class="stat-card-label">Impressions</div>
+      <div class="stat-card-value">762,802</div>
+      <div class="stat-card-sub">Across both campaigns</div>
+    </div>
+
+    <div class="stat-card c-emerald">
+      <div class="stat-card-label">Purchases</div>
+      <div class="stat-card-value">27</div>
+      <div class="stat-card-sub">From the Sales campaign</div>
+    </div>
+
+    <div class="stat-card c-rose">
+      <div class="stat-card-label">Purchase Value</div>
+      <div class="stat-card-value">$2,632.31</div>
+      <div class="stat-card-sub">Avg. purchase $97.49</div>
+    </div>
+
+    <div class="stat-card c-teal span2">
+      <div class="stat-card-label">Purchase ROAS</div>
+      <div class="stat-card-value">2.39x</div>
+      <div class="stat-card-sub">Every $1 spent on Sales returned $2.39 in purchases</div>
+    </div>
+
+    <div class="stat-card c-amber">
+      <div class="stat-card-label">Add to Cart</div>
+      <div class="stat-card-value">532</div>
+      <div class="stat-card-sub">At just $2.07 each</div>
+    </div>
+
+  </div>
+
+  <div class="eff-callout teal">
+    <div class="eff-big">2.39x</div>
+    <div class="eff-text">
+      <strong>Purchase ROAS on the Sales campaign.</strong>
+      $1,099.97 of spend returned <strong>$2,632.31</strong> in purchase value from 27 purchases —
+      an average purchase of <strong>$97.49</strong>.
+      Awareness built the audience; Sales turned it into revenue.
+    </div>
+  </div>
+
+  <!-- CAMPAIGN CARDS -->
+  <div class="section-label">Two Campaigns — Key Numbers</div>
+  <div class="markets-grid">
+
+    <div class="market-card awr">
+      <div class="market-card-header">
+        <span class="market-flag">📣</span>
+        <span class="market-name">Awareness · Reach</span>
+        <span class="market-spend">$500.00</span>
+      </div>
+      <div class="market-campaign-block">
+        <span class="market-campaign-badge badge-s">Kuwait · Ran 27 Oct – 1 Nov</span>
+        <div class="market-metric"><span class="market-ml">People Reached</span><span class="market-mv hi-s">403,580</span></div>
+        <div class="market-metric"><span class="market-ml">Impressions</span><span class="market-mv">690,100</span></div>
+        <div class="market-metric"><span class="market-ml">CPM</span><span class="market-mv">$0.72</span></div>
+        <div class="market-metric"><span class="market-ml">Cost per 1,000 People Reached</span><span class="market-mv">$1.24</span></div>
+        <div class="market-metric"><span class="market-ml">Post Engagement</span><span class="market-mv">15,575</span></div>
+        <div class="market-metric"><span class="market-ml">Video Plays</span><span class="market-mv">680,887</span></div>
+        <div class="market-metric"><span class="market-ml">ThruPlays (cost each)</span><span class="market-mv">1,594 ($0.31)</span></div>
+      </div>
+    </div>
+
+    <div class="market-card sls">
+      <div class="market-card-header">
+        <span class="market-flag">🛍️</span>
+        <span class="market-name">Sales · Purchases</span>
+        <span class="market-spend">$1,099.97</span>
+      </div>
+      <div class="market-campaign-block">
+        <span class="market-campaign-badge badge-e">Kuwait · Ran 19 Oct – 1 Nov</span>
+        <div class="market-metric"><span class="market-ml">Purchases</span><span class="market-mv hi-e">27</span></div>
+        <div class="market-metric"><span class="market-ml">Purchase Value</span><span class="market-mv">$2,632.31</span></div>
+        <div class="market-metric"><span class="market-ml">Purchase ROAS</span><span class="market-mv hi-e">2.39x</span></div>
+        <div class="market-metric"><span class="market-ml">Avg. Purchase Value</span><span class="market-mv">$97.49</span></div>
+        <div class="market-metric"><span class="market-ml">Cost per Purchase</span><span class="market-mv">$40.74</span></div>
+        <div class="market-metric"><span class="market-ml">Add to Cart (cost each)</span><span class="market-mv">532 ($2.07)</span></div>
+        <div class="market-metric"><span class="market-ml">CTR (all)</span><span class="market-mv">1.03%</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="section-label">Highlights</div>
+  <div class="obs-grid">
+    <div class="obs-card">
+      <div class="obs-icon">📣</div>
+      <div class="obs-title">403,580 people reached on a $500 budget</div>
+      <div class="obs-text">That is roughly <strong>807 people reached for every $1</strong> — the full lifetime budget was delivered in 6 days.</div>
+    </div>
+    <div class="obs-card">
+      <div class="obs-icon">💸</div>
+      <div class="obs-title">Very cheap exposure</div>
+      <div class="obs-text"><strong>CPM of $0.72</strong> and <strong>$1.24 per 1,000 people reached</strong> — an efficient way to put the Rihana Collection in front of Kuwait.</div>
+    </div>
+    <div class="obs-card">
+      <div class="obs-icon">🎯</div>
+      <div class="obs-title">2.39x return on Sales spend</div>
+      <div class="obs-text"><strong>27 purchases</strong> generated <strong>$2,632.31</strong> against $1,099.97 spent, at an average purchase value of $97.49.</div>
+    </div>
+    <div class="obs-card">
+      <div class="obs-icon">🛒</div>
+      <div class="obs-title">532 add-to-carts at $2.07 each</div>
+      <div class="obs-text">Strong shopping intent — <strong>3,948 content views</strong> turned into 532 add-to-carts, a <strong>13.5%</strong> rate.</div>
+    </div>
+    <div class="obs-card">
+      <div class="obs-icon">✅</div>
+      <div class="obs-title">37.5% of checkouts became purchases</div>
+      <div class="obs-text">Of <strong>72 shoppers</strong> who started checkout, <strong>27 completed their purchase</strong> — people who reach checkout buy.</div>
+    </div>
+    <div class="obs-card">
+      <div class="obs-icon">⏳</div>
+      <div class="obs-title">Purchases kept coming after ads stopped</div>
+      <div class="obs-text"><strong>9 of the 27 purchases</strong> were dated 2–5 Nov, after ads ended on 1 Nov — credited through the 7-day click window.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══════════ TAB: AWARENESS ══════════ -->
+<div class="tab-content" id="tab-awareness">
+<div class="body">
+
+  <div class="country-header">
+    <div class="country-flag-big">📣</div>
+    <div class="country-header-info">
+      <div class="country-header-name">Awareness · Reach</div>
+      <div class="country-header-sub">Meta | KWT | Reach | Rihana Collection | 27th Oct 2026 · Kuwait · Ran 27 Oct – 1 Nov 2026</div>
+    </div>
+    <div class="country-spend-block">
+      <div class="country-spend-label">Lifetime Budget Spent</div>
+      <div class="country-spend-value">$500.00</div>
+    </div>
+  </div>
+
+  <div class="alert-strip">
+    <div class="alert-pill good">✅ Full $500 budget delivered in 6 days</div>
+    <div class="alert-pill good">🏆 403,580 people reached</div>
+    <div class="alert-pill info">ℹ️ CPM just $0.72</div>
+  </div>
+
+  <div class="section-label">Reach &amp; Delivery</div>
+  <div class="stats-grid">
+    <div class="stat-card c-violet span2">
+      <div class="stat-card-label">People Reached</div>
+      <div class="stat-card-value">403,580</div>
+      <div class="stat-card-sub">The campaign result — about 807 people reached per $1</div>
+    </div>
+    <div class="stat-card c-orange">
+      <div class="stat-card-label">Amount Spent</div>
+      <div class="stat-card-value">$500</div>
+      <div class="stat-card-sub">Full lifetime budget</div>
+    </div>
+    <div class="stat-card c-sky">
+      <div class="stat-card-label">Impressions</div>
+      <div class="stat-card-value">690,100</div>
+      <div class="stat-card-sub">Total ad views delivered</div>
+    </div>
+    <div class="stat-card c-emerald">
+      <div class="stat-card-label">Frequency</div>
+      <div class="stat-card-value">1.71</div>
+      <div class="stat-card-sub">Each person saw it ~1.7 times</div>
+    </div>
+    <div class="stat-card c-teal">
+      <div class="stat-card-label">CPM</div>
+      <div class="stat-card-value">$0.72</div>
+      <div class="stat-card-sub">Per 1,000 impressions</div>
+    </div>
+  </div>
+
+  <div class="eff-callout violet">
+    <div class="eff-big">$1.24</div>
+    <div class="eff-text">
+      <strong>Cost per 1,000 people reached.</strong>
+      $500 reached <strong>403,580 people</strong> in Kuwait —
+      a very efficient way to introduce the Rihana Collection to a wide audience.
+    </div>
+  </div>
+
+  <div class="section-label">Engagement</div>
+  <div class="stats-grid">
+    <div class="stat-card c-rose">
+      <div class="stat-card-label">Post Engagement</div>
+      <div class="stat-card-value">15,575</div>
+      <div class="stat-card-sub">Total interactions with the ads</div>
+    </div>
+    <div class="stat-card c-amber">
+      <div class="stat-card-label">Post Reactions</div>
+      <div class="stat-card-value">104</div>
+      <div class="stat-card-sub">Likes &amp; reactions</div>
+    </div>
+    <div class="stat-card c-sky">
+      <div class="stat-card-label">Post Shares</div>
+      <div class="stat-card-value">18</div>
+      <div class="stat-card-sub">People shared the ad</div>
+    </div>
+  </div>
+
+  <div class="section-label">Video Performance</div>
+  <div class="stats-grid">
+    <div class="stat-card c-violet">
+      <div class="stat-card-label">Video Plays</div>
+      <div class="stat-card-value">680,887</div>
+      <div class="stat-card-sub">Total plays</div>
+    </div>
+    <div class="stat-card c-sky">
+      <div class="stat-card-label">Media Views</div>
+      <div class="stat-card-value">715,129</div>
+      <div class="stat-card-sub">Video + image views</div>
+    </div>
+    <div class="stat-card c-emerald">
+      <div class="stat-card-label">ThruPlays</div>
+      <div class="stat-card-value">1,594</div>
+      <div class="stat-card-sub">Watched 15 sec or to the end</div>
+    </div>
+    <div class="stat-card c-teal">
+      <div class="stat-card-label">Cost per ThruPlay</div>
+      <div class="stat-card-value">$0.31</div>
+      <div class="stat-card-sub">Per deep view</div>
+    </div>
+    <div class="stat-card c-amber">
+      <div class="stat-card-label">3-Second Plays</div>
+      <div class="stat-card-value">15,337</div>
+      <div class="stat-card-sub">Viewers who stopped to watch</div>
+    </div>
+    <div class="stat-card c-rose">
+      <div class="stat-card-label">Watched to 100%</div>
+      <div class="stat-card-value">1,008</div>
+      <div class="stat-card-sub">Completed views</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══════════ TAB: SALES ══════════ -->
+<div class="tab-content" id="tab-sales">
+<div class="body">
+
+  <div class="country-header">
+    <div class="country-flag-big">🛍️</div>
+    <div class="country-header-info">
+      <div class="country-header-name">Sales · Purchases</div>
+      <div class="country-header-sub">Meta | KWT | Sales | Rihana Collection | 17th Oct 2026 · Kuwait · Ran 19 Oct – 1 Nov 2026</div>
+    </div>
+    <div class="country-spend-block">
+      <div class="country-spend-label">Lifetime Budget Spent</div>
+      <div class="country-spend-value" style="color:#EC4899;">$1,099.97</div>
+    </div>
+  </div>
+
+  <div class="alert-strip">
+    <div class="alert-pill good">✅ 2.39x purchase ROAS</div>
+    <div class="alert-pill good">🛒 27 purchases · $97 average</div>
+    <div class="alert-pill good">🏆 37.5% of checkouts completed</div>
+  </div>
+
+  <div class="section-label">Sales Results</div>
+  <div class="stats-grid">
+    <div class="stat-card c-rose span2">
+      <div class="stat-card-label">Purchase Conversion Value</div>
+      <div class="stat-card-value">$2,632.31</div>
+      <div class="stat-card-sub">Revenue from purchases across the campaign</div>
+    </div>
+    <div class="stat-card c-emerald">
+      <div class="stat-card-label">Purchases</div>
+      <div class="stat-card-value">27</div>
+      <div class="stat-card-sub">Campaign result</div>
+    </div>
+    <div class="stat-card c-teal">
+      <div class="stat-card-label">Purchase ROAS</div>
+      <div class="stat-card-value">2.39x</div>
+      <div class="stat-card-sub">$2.39 back per $1</div>
+    </div>
+    <div class="stat-card c-violet">
+      <div class="stat-card-label">Avg. Purchase Value</div>
+      <div class="stat-card-value">$97.49</div>
+      <div class="stat-card-sub">Per order</div>
+    </div>
+    <div class="stat-card c-amber">
+      <div class="stat-card-label">Cost per Purchase</div>
+      <div class="stat-card-value">$40.74</div>
+      <div class="stat-card-sub">Per purchase</div>
+    </div>
+  </div>
+
+  <div class="eff-callout teal">
+    <div class="eff-big">2.39x</div>
+    <div class="eff-text">
+      <strong>Every $1 spent returned $2.39 in purchase value.</strong>
+      27 purchases at an average of $97.49 generated <strong>$2,632.31</strong>
+      from $1,099.97 of spend.
+    </div>
+  </div>
+
+  <div class="section-label">Shopper Journey</div>
+  <div class="funnel">
+    <div class="funnel-step f1">
+      <div class="funnel-label">Content Views</div>
+      <div class="funnel-value">3,948</div>
+      <div class="funnel-cost">Shoppers viewing products</div>
+      <span class="funnel-rate neutral">Top of funnel</span>
+    </div>
+    <div class="funnel-step f2">
+      <div class="funnel-label">Add to Cart</div>
+      <div class="funnel-value">532</div>
+      <div class="funnel-cost"><b>$2.07</b> each</div>
+      <span class="funnel-rate">13.5% of views</span>
+    </div>
+    <div class="funnel-step f3">
+      <div class="funnel-label">Initiate Checkout</div>
+      <div class="funnel-value">72</div>
+      <div class="funnel-cost"><b>$15.28</b> each</div>
+      <span class="funnel-rate">13.5% of carts</span>
+    </div>
+    <div class="funnel-step f4">
+      <div class="funnel-label">Purchases</div>
+      <div class="funnel-value">27</div>
+      <div class="funnel-cost"><b>$40.74</b> each</div>
+      <span class="funnel-rate">37.5% of checkouts</span>
+    </div>
+  </div>
+
+  <div class="section-label">Daily Activity</div>
+
+  <div class="chart-card">
+    <div class="chart-title">Daily Ad Spend</div>
+    <div class="chart-sub">Spend stepped up from 27 Oct and peaked at $173.56 on 31 Oct</div>
+    <div class="chart" id="chart-spend"></div>
+    <div class="chart-axis" id="axis-spend"></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Daily Purchases</div>
+    <div class="chart-sub">Best day was 1 Nov with 5 purchases — and 9 more were credited after ads stopped</div>
+    <div class="chart" id="chart-purch"></div>
+    <div class="chart-axis" id="axis-purch"></div>
+    <div class="chart-legend">
+      <div class="chart-legend-item"><i style="background:#EC4899;"></i>Ads running (19 Oct – 1 Nov)</div>
+      <div class="chart-legend-item"><i style="background:#10B981;"></i>After ads stopped (2–5 Nov) · 7-day click attribution</div>
+    </div>
+  </div>
+
+  <div class="section-label">Traffic</div>
+  <div class="stats-grid cols4">
+    <div class="stat-card c-sky">
+      <div class="stat-card-label">Link Clicks</div>
+      <div class="stat-card-value">535</div>
+      <div class="stat-card-sub">To the website</div>
+    </div>
+    <div class="stat-card c-emerald">
+      <div class="stat-card-label">Cost per Link Click</div>
+      <div class="stat-card-value">$2.06</div>
+      <div class="stat-card-sub">Per click</div>
+    </div>
+    <div class="stat-card c-violet">
+      <div class="stat-card-label">CTR (all)</div>
+      <div class="stat-card-value">1.03%</div>
+      <div class="stat-card-sub">Click-through rate</div>
+    </div>
+    <div class="stat-card c-rose">
+      <div class="stat-card-label">Unique Link CTR</div>
+      <div class="stat-card-value">3.53%</div>
+      <div class="stat-card-sub">Of people reached</div>
+    </div>
+  </div>
+
+  <div class="section-label">Reach &amp; Engagement</div>
+  <div class="stats-grid cols4">
+    <div class="stat-card c-violet">
+      <div class="stat-card-label">People Reached</div>
+      <div class="stat-card-value">12,794</div>
+      <div class="stat-card-sub">Unique people</div>
+    </div>
+    <div class="stat-card c-sky">
+      <div class="stat-card-label">Impressions</div>
+      <div class="stat-card-value">72,702</div>
+      <div class="stat-card-sub">Total ad views</div>
+    </div>
+    <div class="stat-card c-amber">
+      <div class="stat-card-label">Post Engagement</div>
+      <div class="stat-card-value">5,780</div>
+      <div class="stat-card-sub">Interactions</div>
+    </div>
+    <div class="stat-card c-teal">
+      <div class="stat-card-label">Video Plays</div>
+      <div class="stat-card-value">65,682</div>
+      <div class="stat-card-sub">Total plays</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Prepared by <span>Armada Retail Group — Digital Marketing</span> &nbsp;·&nbsp; Riva Home · Rihana Collection &nbsp;·&nbsp; 17 Oct – 1 Nov 2026 &nbsp;·&nbsp; Confidential
+</div>
+
+<script>
+  function switchTab(btn, id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Sales campaign — daily data (19 Oct to 5 Nov)
+  var days = [
+    {d:'19',m:'Oct',s:10.59,p:0},  {d:'20',m:'Oct',s:39.32,p:1},  {d:'21',m:'Oct',s:35.54,p:0},
+    {d:'22',m:'Oct',s:38.24,p:2},  {d:'23',m:'Oct',s:31.94,p:0},  {d:'24',m:'Oct',s:47.99,p:1},
+    {d:'25',m:'Oct',s:36.32,p:0},  {d:'26',m:'Oct',s:38.02,p:1},  {d:'27',m:'Oct',s:116.93,p:1},
+    {d:'28',m:'Oct',s:147.54,p:3}, {d:'29',m:'Oct',s:147.08,p:0}, {d:'30',m:'Oct',s:146.82,p:1},
+    {d:'31',m:'Oct',s:173.56,p:3}, {d:'1',m:'Nov',s:90.08,p:5},   {d:'2',m:'Nov',s:0,p:4,after:true},
+    {d:'3',m:'Nov',s:0,p:2,after:true}, {d:'4',m:'Nov',s:0,p:0,after:true}, {d:'5',m:'Nov',s:0,p:3,after:true}
+  ];
+
+  function buildChart(chartId, axisId, key, maxVal, maxPx, color, fmt) {
+    var chart = document.getElementById(chartId);
+    var axis = document.getElementById(axisId);
+    days.forEach(function (day, i) {
+      var v = day[key];
+      var col = document.createElement('div');
+      col.className = 'chart-col';
+      var label = document.createElement('div');
+      label.className = 'chart-val' + (v === 0 ? ' zero' : '');
+      label.textContent = fmt(v);
+      var bar = document.createElement('div');
+      bar.className = 'chart-bar';
+      bar.style.height = Math.round((v / maxVal) * maxPx) + 'px';
+      bar.style.background = (key === 'p' && day.after) ? '#10B981' : color;
+      col.appendChild(label);
+      col.appendChild(bar);
+      chart.appendChild(col);
+      var ax = document.createElement('span');
+      var showMonth = (i === 0 || day.d === '1');
+      ax.innerHTML = day.d + (showMonth ? '<br>' + day.m : '');
+      axis.appendChild(ax);
+    });
+  }
+
+  buildChart('chart-spend', 'axis-spend', 's', 173.56, 100, '#7C3AED', function (v) { return v === 0 ? '$0' : '$' + Math.round(v); });
+  buildChart('chart-purch', 'axis-purch', 'p', 5, 100, '#EC4899', function (v) { return v; });
+</script>
+</body>
+</html>
